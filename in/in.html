@@ -29,11 +29,6 @@ body{
 
     margin:0 auto;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
     position:relative;
 
     overflow:hidden;
@@ -42,78 +37,83 @@ body{
 
     background:#0d0d0d;
 
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     box-shadow:
         0 10px 30px rgba(0,0,0,.25);
 }
 
 
 /* =========================================================
-   ОБКЛАДИНКА-КНОПКА
+   ОБКЛАДИНКА
 ========================================================= */
 
 .instagram-cover-btn{
     position:absolute;
-
     inset:0;
 
     width:100%;
     height:100%;
 
-    padding:0;
     margin:0;
+    padding:0;
 
     border:0;
 
     cursor:pointer;
-
     overflow:hidden;
 
-    background:
+    /*
+       1 — дуже легке затемнення
+       2 — основна картинка
+       3 — Instagram gradient fallback
+    */
+
+    background-image:
         linear-gradient(
             to bottom,
-            rgba(0,0,0,.08),
-            rgba(0,0,0,.35)
+            rgba(0,0,0,.00),
+            rgba(0,0,0,.10)
         ),
-        url("fox_harko_instagram_cover_330x650.png");
+        url("./fox_harko_instagram_cover_330x650.png"),
+        linear-gradient(
+            135deg,
+            #833ab4 0%,
+            #c13584 30%,
+            #e1306c 55%,
+            #fd1d1d 72%,
+            #f77737 88%,
+            #fcaf45 100%
+        );
 
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+    background-size:
+        cover,
+        cover,
+        cover;
+
+    background-position:
+        center,
+        center,
+        center;
+
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        no-repeat;
+
+    background-color:#833ab4;
 
     z-index:10;
 }
 
 
-/* якщо картинки обкладинки немає */
-
-.instagram-cover-btn::before{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:-1;
-
-    background:
-        radial-gradient(
-            circle at 25% 100%,
-            #feda75 0,
-            transparent 34%
-        ),
-        radial-gradient(
-            circle at 90% 10%,
-            #4f5bd5 0,
-            transparent 38%
-        ),
-        linear-gradient(
-            135deg,
-            #962fbf,
-            #d62976 48%,
-            #fa7e1e
-        );
-}
-
+/* =========================================================
+   КНОПКА "ПОКАЗАТИ INSTAGRAM"
+   ТОЧНО ПО ЦЕНТРУ
+========================================================= */
 
 .instagram-cover-label{
     position:absolute;
@@ -125,61 +125,60 @@ body{
         translate(-50%,-50%);
 
     width:82%;
-    max-width:255px;
+    max-width:260px;
 
-    box-sizing:border-box;
-
-    padding:14px 17px;
+    padding:13px 16px;
 
     border:
-        2px solid rgba(255,255,255,.96);
+        2px solid rgba(255,255,255,.97);
 
-    border-radius:14px;
-
-    color:#fff;
+    border-radius:13px;
 
     background:
         linear-gradient(
-            100deg,
-            rgba(131,58,180,.94),
-            rgba(225,48,108,.94),
-            rgba(252,175,69,.94)
+            90deg,
+            rgba(131,58,180,.96),
+            rgba(225,48,108,.96),
+            rgba(247,119,55,.96)
         );
 
-    font-size:17px;
+    color:#fff;
 
+    text-align:center;
+
+    font-size:16px;
     font-weight:900;
 
     letter-spacing:.2px;
 
-    text-align:center;
-
     text-shadow:
-        0 2px 5px rgba(0,0,0,.55);
+        0 2px 5px rgba(0,0,0,.58);
 
     box-shadow:
-        0 8px 24px rgba(0,0,0,.36),
-        0 0 0 2px rgba(255,255,255,.12);
+        0 7px 22px rgba(0,0,0,.40),
+        0 0 0 2px rgba(255,255,255,.10);
 
-    backdrop-filter:blur(4px);
-    -webkit-backdrop-filter:blur(4px);
+    backdrop-filter:
+        blur(4px);
+
+    -webkit-backdrop-filter:
+        blur(4px);
 
     transition:
         transform .18s,
-        box-shadow .18s,
-        filter .18s;
+        filter .18s,
+        box-shadow .18s;
 }
-
 
 .instagram-cover-btn:hover
 .instagram-cover-label{
-    filter:brightness(1.08);
+    filter:
+        brightness(1.08);
 
     box-shadow:
-        0 9px 27px rgba(0,0,0,.42),
-        0 0 18px rgba(225,48,108,.42);
+        0 8px 25px rgba(0,0,0,.45),
+        0 0 16px rgba(225,48,108,.45);
 }
-
 
 .instagram-cover-btn:active
 .instagram-cover-label{
@@ -197,8 +196,9 @@ body{
     display:none;
 
     position:absolute;
-
     inset:0;
+
+    z-index:11;
 
     justify-content:center;
     align-items:center;
@@ -216,10 +216,7 @@ body{
             #a41d66,
             #d65632
         );
-
-    z-index:11;
 }
-
 
 .instagram-spinner{
     width:31px;
@@ -237,13 +234,11 @@ body{
         linear infinite;
 }
 
-
 @keyframes instagram-spin{
     to{
         transform:rotate(360deg);
     }
 }
-
 
 .instagram-loader span{
     font-size:13px;
@@ -252,33 +247,31 @@ body{
 
 
 /* =========================================================
-   ВЕСЬ ВІДЖЕТ ПІСЛЯ ЗАВАНТАЖЕННЯ
+   ОСНОВНИЙ ВІДЖЕТ
 ========================================================= */
 
 .instagram-widget{
     position:absolute;
-
     inset:0;
 
     width:330px;
     height:650px;
 
+    padding:
+        0 8px 78px;
+
     overflow-x:hidden;
     overflow-y:auto;
-
-    padding:
-        0 8px 80px;
 
     background:
         linear-gradient(
             180deg,
-            #0a0a0a 0%,
+            #080808 0%,
             #111 45%,
-            #080808 100%
+            #070707 100%
         );
 
     opacity:0;
-
     visibility:hidden;
 
     transition:
@@ -292,10 +285,8 @@ body{
         #555 #111;
 }
 
-
 .instagram-widget.show{
     opacity:1;
-
     visibility:visible;
 }
 
@@ -315,7 +306,7 @@ body{
         0 -8px 10px;
 
     padding:
-        13px 12px 12px;
+        12px 11px 11px;
 
     background:
         rgba(12,12,12,.97);
@@ -324,7 +315,7 @@ body{
         1px solid rgba(255,255,255,.10);
 
     box-shadow:
-        0 5px 15px rgba(0,0,0,.16);
+        0 5px 15px rgba(0,0,0,.18);
 
     backdrop-filter:
         blur(14px);
@@ -333,13 +324,12 @@ body{
         blur(14px);
 }
 
-
 .instagram-profile-main{
     display:flex;
 
     align-items:center;
 
-    gap:10px;
+    gap:9px;
 }
 
 
@@ -369,7 +359,6 @@ body{
         );
 }
 
-
 .instagram-avatar-inner{
     width:100%;
     height:100%;
@@ -380,7 +369,6 @@ body{
 
     background:#111;
 }
-
 
 .instagram-avatar{
     display:block;
@@ -396,27 +384,29 @@ body{
 }
 
 
+/* =========================================================
+   PROFILE INFO
+========================================================= */
+
 .instagram-profile-info{
     min-width:0;
 
     flex:1;
 }
 
-
 .instagram-service{
     margin-bottom:3px;
 
     color:#aaa;
 
-    font-size:10px;
+    font-size:9px;
 
-    font-weight:700;
+    font-weight:800;
 
     text-transform:uppercase;
 
     letter-spacing:.65px;
 }
-
 
 .instagram-username{
     overflow:hidden;
@@ -432,7 +422,6 @@ body{
     text-overflow:ellipsis;
 }
 
-
 .instagram-profile-open{
     display:flex;
 
@@ -445,14 +434,13 @@ body{
     min-height:32px;
 
     padding:
-        7px 10px;
+        7px 9px;
 
     border-radius:9px;
 
-    color:#fff;
+    background:#0095f6;
 
-    background:
-        #0095f6;
+    color:#fff;
 
     text-decoration:none;
 
@@ -465,11 +453,9 @@ body{
         transform .18s;
 }
 
-
 .instagram-profile-open:hover{
     background:#168fe5;
 }
-
 
 .instagram-profile-open:active{
     transform:scale(.97);
@@ -488,9 +474,8 @@ body{
 
     gap:6px;
 
-    margin-top:12px;
+    margin-top:11px;
 }
-
 
 .instagram-stat{
     display:block;
@@ -519,7 +504,6 @@ body{
         border-color .18s;
 }
 
-
 .instagram-stat:hover{
     background:
         rgba(255,255,255,.09);
@@ -528,11 +512,12 @@ body{
         rgba(255,255,255,.18);
 }
 
-
 .instagram-stat-value{
     display:block;
 
     overflow:hidden;
+
+    color:#fff;
 
     font-size:13px;
 
@@ -542,7 +527,6 @@ body{
 
     text-overflow:ellipsis;
 }
-
 
 .instagram-stat-label{
     display:block;
@@ -558,52 +542,12 @@ body{
 
 
 /* =========================================================
-   SECTION TITLE
-========================================================= */
-
-.instagram-section-title{
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    margin:
-        11px 3px 8px;
-
-    color:#fff;
-
-    font-size:13px;
-
-    font-weight:900;
-}
-
-
-.instagram-section-title::before{
-    content:"";
-
-    width:4px;
-    height:18px;
-
-    border-radius:5px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #feda75,
-            #d62976,
-            #4f5bd5
-        );
-}
-
-
-/* =========================================================
-   SPOILER PINNED
+   ЗАКРІПЛЕНІ
 ========================================================= */
 
 .instagram-pinned{
     margin:
-        8px 0 13px;
+        9px 0 13px;
 
     overflow:hidden;
 
@@ -619,17 +563,17 @@ body{
         0 4px 15px rgba(0,0,0,.17);
 }
 
-
 .instagram-pinned summary{
+    position:relative;
+
     display:flex;
 
     align-items:center;
-    justify-content:space-between;
 
-    gap:10px;
+    gap:8px;
 
     padding:
-        12px 11px;
+        11px 37px 11px 11px;
 
     cursor:pointer;
 
@@ -642,8 +586,8 @@ body{
     background:
         linear-gradient(
             90deg,
-            rgba(131,58,180,.17),
-            rgba(225,48,108,.13),
+            rgba(131,58,180,.20),
+            rgba(225,48,108,.14),
             rgba(252,175,69,.10)
         );
 
@@ -652,21 +596,37 @@ body{
     font-weight:900;
 }
 
-
 .instagram-pinned
 summary::-webkit-details-marker{
     display:none;
 }
 
+.instagram-pinned
+summary::after{
+    content:"▼";
 
-.instagram-pinned-title{
-    display:flex;
+    position:absolute;
 
-    align-items:center;
+    right:13px;
+    top:50%;
 
-    gap:7px;
+    transform:
+        translateY(-50%);
+
+    color:#ccc;
+
+    font-size:9px;
+
+    transition:
+        transform .18s;
 }
 
+.instagram-pinned[open]
+summary::after{
+    transform:
+        translateY(-50%)
+        rotate(180deg);
+}
 
 .instagram-pin-icon{
     display:flex;
@@ -677,6 +637,9 @@ summary::-webkit-details-marker{
     width:25px;
     height:25px;
 
+    flex:
+        0 0 25px;
+
     border-radius:8px;
 
     background:
@@ -685,6 +648,17 @@ summary::-webkit-details-marker{
     font-size:13px;
 }
 
+.instagram-pinned-title{
+    min-width:0;
+
+    flex:1;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+}
 
 .instagram-pinned-count{
     display:flex;
@@ -710,31 +684,9 @@ summary::-webkit-details-marker{
     font-weight:900;
 }
 
-
-.instagram-pinned summary::after{
-    content:"▼";
-
-    color:#aaa;
-
-    font-size:9px;
-
-    transition:
-        transform .18s;
-}
-
-
-.instagram-pinned[open]
-summary::after{
-    transform:
-        rotate(180deg);
-}
-
-
 .instagram-pinned-content{
-    padding:
-        9px;
+    padding:9px;
 }
-
 
 .instagram-no-pinned{
     padding:
@@ -742,16 +694,55 @@ summary::after{
 
     border-radius:9px;
 
-    color:#aaa;
-
     background:
         rgba(255,255,255,.035);
+
+    color:#aaa;
 
     text-align:center;
 
     font-size:11px;
 
     line-height:1.4;
+}
+
+
+/* =========================================================
+   НАЗВА БЛОКУ
+========================================================= */
+
+.instagram-section-title{
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    margin:
+        10px 3px 8px;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:900;
+}
+
+.instagram-section-title::before{
+    content:"";
+
+    width:4px;
+    height:18px;
+
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #feda75,
+            #d62976,
+            #4f5bd5
+        );
 }
 
 
@@ -766,7 +757,6 @@ summary::after{
 
     gap:13px;
 }
-
 
 .instagram-post-card{
     position:relative;
@@ -786,7 +776,6 @@ summary::after{
         0 5px 18px rgba(0,0,0,.25);
 }
 
-
 .instagram-post-number{
     position:absolute;
 
@@ -800,7 +789,7 @@ summary::after{
     align-items:center;
     justify-content:center;
 
-    min-width:29px;
+    min-width:30px;
     height:29px;
 
     padding:
@@ -811,10 +800,10 @@ summary::after{
 
     border-radius:8px;
 
-    color:#fff;
-
     background:
         rgba(0,0,0,.72);
+
+    color:#fff;
 
     font-size:10px;
 
@@ -827,20 +816,19 @@ summary::after{
         blur(7px);
 }
 
-
 .instagram-post-link{
     display:flex;
 
     align-items:center;
     justify-content:center;
 
-    min-height:90px;
+    min-height:100px;
 
     padding:18px;
 
-    color:#333;
-
     background:#fff;
+
+    color:#333;
 
     text-decoration:none;
 
@@ -850,12 +838,6 @@ summary::after{
 
     font-weight:800;
 }
-
-
-/*
-Instagram сам перетворює blockquote
-на iframe після підключення embed.js
-*/
 
 .instagram-media{
     min-width:0 !important;
@@ -871,22 +853,22 @@ Instagram сам перетворює blockquote
 
 
 /* =========================================================
-   ПОМИЛКА / НЕМА ПОСТІВ
+   EMPTY
 ========================================================= */
 
 .instagram-empty{
     padding:
-        25px 15px;
+        24px 15px;
 
     border:
         1px dashed rgba(255,255,255,.16);
 
     border-radius:11px;
 
-    color:#999;
-
     background:
         rgba(255,255,255,.025);
+
+    color:#999;
 
     text-align:center;
 
@@ -897,7 +879,7 @@ Instagram сам перетворює blockquote
 
 
 /* =========================================================
-   НИЖНЯ ЗАКРІПЛЕНА КНОПКА
+   НИЖНЯ ЗАКРІПЛЕНА ПАНЕЛЬ
 ========================================================= */
 
 .instagram-fixed-bottom{
@@ -925,11 +907,9 @@ Instagram сам перетворює blockquote
     pointer-events:none;
 }
 
-
 .instagram-fixed-bottom.show{
     display:block;
 }
-
 
 .instagram-bottom-link{
     display:flex;
@@ -945,8 +925,6 @@ Instagram сам перетворює blockquote
 
     border-radius:11px;
 
-    color:#fff;
-
     background:
         linear-gradient(
             90deg,
@@ -956,6 +934,8 @@ Instagram сам перетворює blockquote
             #fd1d1d,
             #f77737
         );
+
+    color:#fff;
 
     text-decoration:none;
 
@@ -973,11 +953,9 @@ Instagram сам перетворює blockquote
         transform .18s;
 }
 
-
 .instagram-bottom-link:hover{
     filter:brightness(1.1);
 }
-
 
 .instagram-bottom-link:active{
     transform:scale(.98);
@@ -1045,7 +1023,7 @@ Instagram сам перетворює blockquote
 
 
     <!-- =====================================================
-         ВІДЖЕТ
+         ОСНОВНИЙ CONTENT
     ====================================================== -->
 
     <div
@@ -1057,8 +1035,11 @@ Instagram сам перетворює blockquote
 
         <header class="instagram-profile">
 
+
             <div class="instagram-profile-main">
 
+
+                <!-- AVATAR -->
 
                 <div class="instagram-avatar-wrap">
 
@@ -1074,6 +1055,9 @@ Instagram сам перетворює blockquote
                 </div>
 
 
+
+                <!-- NAME -->
+
                 <div class="instagram-profile-info">
 
                     <div class="instagram-service">
@@ -1083,15 +1067,21 @@ Instagram сам перетворює blockquote
                     <div
                         id="foxHarkoInstagramUsername"
                         class="instagram-username">
+
+                        @fox_harko
+
                     </div>
 
                 </div>
 
 
+
+                <!-- PROFILE LINK -->
+
                 <a
                     id="foxHarkoInstagramProfileOpen"
                     class="instagram-profile-open"
-                    href="#"
+                    href="https://www.instagram.com/fox_harko/"
                     target="_blank"
                     rel="noopener noreferrer">
 
@@ -1099,26 +1089,33 @@ Instagram сам перетворює blockquote
 
                 </a>
 
+
             </div>
 
 
 
-            <!-- STATS -->
+            <!-- =================================================
+                 СТАТИСТИКА
+            ================================================== -->
 
             <div class="instagram-stats">
 
 
+                <!-- POSTS -->
+
                 <a
                     id="foxHarkoInstagramPostsStat"
                     class="instagram-stat"
-                    href="#"
+                    href="https://www.instagram.com/fox_harko/"
                     target="_blank"
                     rel="noopener noreferrer">
 
                     <span
                         id="foxHarkoInstagramPostsValue"
                         class="instagram-stat-value">
+
                         —
+
                     </span>
 
                     <span class="instagram-stat-label">
@@ -1129,17 +1126,21 @@ Instagram сам перетворює blockquote
 
 
 
+                <!-- FOLLOWERS -->
+
                 <a
                     id="foxHarkoInstagramFollowersStat"
                     class="instagram-stat"
-                    href="#"
+                    href="https://www.instagram.com/fox_harko/"
                     target="_blank"
                     rel="noopener noreferrer">
 
                     <span
                         id="foxHarkoInstagramFollowersValue"
                         class="instagram-stat-value">
+
                         —
+
                     </span>
 
                     <span class="instagram-stat-label">
@@ -1150,17 +1151,21 @@ Instagram сам перетворює blockquote
 
 
 
+                <!-- FOLLOWING -->
+
                 <a
                     id="foxHarkoInstagramFollowingStat"
                     class="instagram-stat"
-                    href="#"
+                    href="https://www.instagram.com/fox_harko/"
                     target="_blank"
                     rel="noopener noreferrer">
 
                     <span
                         id="foxHarkoInstagramFollowingValue"
                         class="instagram-stat-value">
+
                         —
+
                     </span>
 
                     <span class="instagram-stat-label">
@@ -1176,9 +1181,9 @@ Instagram сам перетворює blockquote
 
 
 
-        <!-- =================================================
-             PINNED
-        ================================================== -->
+        <!-- =====================================================
+             ЗАКРІПЛЕНІ
+        ====================================================== -->
 
         <details
             id="foxHarkoInstagramPinned"
@@ -1187,23 +1192,22 @@ Instagram сам перетворює blockquote
 
             <summary>
 
+                <span class="instagram-pin-icon">
+                    📌
+                </span>
+
+
                 <span class="instagram-pinned-title">
-
-                    <span class="instagram-pin-icon">
-                        📌
-                    </span>
-
-                    <span>
-                        Закріплені малюнки
-                    </span>
-
+                    Закріплені малюнки
                 </span>
 
 
                 <span
                     id="foxHarkoInstagramPinnedCount"
                     class="instagram-pinned-count">
+
                     0
+
                 </span>
 
             </summary>
@@ -1212,6 +1216,7 @@ Instagram сам перетворює blockquote
             <div
                 id="foxHarkoInstagramPinnedContent"
                 class="instagram-pinned-content">
+
             </div>
 
 
@@ -1219,9 +1224,9 @@ Instagram сам перетворює blockquote
 
 
 
-        <!-- =================================================
-             RECENT
-        ================================================== -->
+        <!-- =====================================================
+             СВІЖІ
+        ====================================================== -->
 
         <div class="instagram-section-title">
             Свіжі публікації
@@ -1231,6 +1236,7 @@ Instagram сам перетворює blockquote
         <div
             id="foxHarkoInstagramRecent"
             class="instagram-posts">
+
         </div>
 
 
@@ -1270,17 +1276,11 @@ Instagram сам перетворює blockquote
 (() => {
 
 
-    /*
-    =========================================================
-    ЦЕЙ ОБ'ЄКТ ПІДСТАВЛЯЄ CLOUDFLARE WORKER
-    =========================================================
+    /* =====================================================
+       ДАНІ
 
-    Сам HTML / дизайн нижче міняти не потрібно.
-
-    Worker змінює тільки дані.
-    =========================================================
-    */
-
+       ЦЕЙ БЛОК ПОТІМ ЗМІНЮЄ WORKER.
+    ===================================================== */
 
     const INSTAGRAM_DATA = {
 
@@ -1292,16 +1292,19 @@ Instagram сам перетворює blockquote
 
 
         /*
-        Можна використати окрему локальну
-        картинку профілю.
+          Локальна аватарка.
 
-        Вона завантажиться ТІЛЬКИ після
-        натискання "Показати Instagram".
+          Не завантажується,
+          доки користувач не натисне кнопку.
         */
 
         avatarUrl:
-            "fox_harko_instagram_avatar.png",
+            "./fox_harko_instagram_avatar.png",
 
+
+        /*
+          Worker підставляє реальні значення.
+        */
 
         stats: {
 
@@ -1318,45 +1321,48 @@ Instagram сам перетворює blockquote
 
 
         /*
-        01–09
+          01 → 09
+
+          Закріплені.
         */
 
         pinned: [
 
             /*
-            Приклад:
-
             {
                 position:"01",
-                type:"p",
-                id:"ABCDEFG",
-                permalink:
-                    "https://www.instagram.com/p/ABCDEFG/"
-            }
 
+                type:"p",
+
+                id:"ABC123",
+
+                permalink:
+                    "https://www.instagram.com/p/ABC123/"
+            }
             */
 
         ],
 
 
         /*
-        1–10
+          1 → 10
+
+          Свіжі.
         */
 
         recent: [
 
             /*
-            Worker автоматично вставляє
-            знайдені свіжі публікації.
-
             {
                 position:1,
-                type:"p",
-                id:"ABCDEFG",
-                permalink:
-                    "https://www.instagram.com/p/ABCDEFG/"
-            }
 
+                type:"p",
+
+                id:"ABC123",
+
+                permalink:
+                    "https://www.instagram.com/p/ABC123/"
+            }
             */
 
         ]
@@ -1365,24 +1371,22 @@ Instagram сам перетворює blockquote
 
 
 
-    /*
-    =========================================================
-    СТАН
-    =========================================================
-    */
+    /* =====================================================
+       STATE
+    ===================================================== */
 
-    let loaded = false;
+    let loaded =
+        false;
+
 
     let instagramScriptLoaded =
         false;
 
 
 
-    /*
-    =========================================================
-    ELEMENTS
-    =========================================================
-    */
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
     const loadBtn =
         document.getElementById(
@@ -1487,33 +1491,36 @@ Instagram сам перетворює blockquote
 
 
 
-    /*
-    =========================================================
-    ESCAPE
-    =========================================================
-    */
+    /* =====================================================
+       ESCAPE
+    ===================================================== */
 
     function escapeHTML(value){
 
         return String(
             value ?? ""
         )
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
@@ -1523,11 +1530,9 @@ Instagram сам перетворює blockquote
 
 
 
-    /*
-    =========================================================
-    ОДИН POST
-    =========================================================
-    */
+    /* =====================================================
+       HTML ОДНОГО ПОСТА
+    ===================================================== */
 
     function createPostHTML(post){
 
@@ -1543,16 +1548,10 @@ Instagram сам перетворює blockquote
             );
 
 
-        /*
-        Усередині blockquote є fallback-посилання.
-
-        Якщо Instagram embed.js не спрацює,
-        користувач усе одно зможе відкрити пост.
-        */
-
         return `
 
             <div class="instagram-post-card">
+
 
                 <div class="instagram-post-number">
                     ${position}
@@ -1565,6 +1564,7 @@ Instagram сам перетворює blockquote
                     data-instgrm-permalink="${permalink}"
                     data-instgrm-version="14">
 
+
                     <a
                         class="instagram-post-link"
                         href="${permalink}"
@@ -1576,7 +1576,9 @@ Instagram сам перетворює blockquote
 
                     </a>
 
+
                 </blockquote>
+
 
             </div>
 
@@ -1586,11 +1588,9 @@ Instagram сам перетворює blockquote
 
 
 
-    /*
-    =========================================================
-    PROFILE
-    =========================================================
-    */
+    /* =====================================================
+       PROFILE
+    ===================================================== */
 
     function renderProfile(){
 
@@ -1639,10 +1639,10 @@ Instagram сам перетворює blockquote
 
 
         /*
-        Аватар задається тільки тут.
+          Важливо:
 
-        До натискання кнопки браузер
-        його не завантажує.
+          src avatar задаємо
+          ТІЛЬКИ після кліку.
         */
 
         if(
@@ -1656,29 +1656,28 @@ Instagram сам перетворює blockquote
 
 
         /*
-        Якщо локального аватара немає,
-        використовуємо favicon Харка.
+          Fallback.
         */
 
-        avatar.onerror = () => {
+        avatar.onerror =
+            () => {
 
-            avatar.onerror =
-                null;
+                avatar.onerror =
+                    null;
 
-            avatar.src =
-                "https://fox-harko.pp.ua/favicon.svg";
 
-        };
+                avatar.src =
+                    "https://fox-harko.pp.ua/favicon.svg";
+
+            };
 
     }
 
 
 
-    /*
-    =========================================================
-    PINNED
-    =========================================================
-    */
+    /* =====================================================
+       ЗАКРІПЛЕНІ
+    ===================================================== */
 
     function renderPinned(){
 
@@ -1694,6 +1693,11 @@ Instagram сам перетворює blockquote
             items.length;
 
 
+        /*
+          Навіть якщо закріплених нема,
+          spoiler все одно є.
+        */
+
         if(
             items.length === 0
         ){
@@ -1708,6 +1712,7 @@ Instagram сам перетворює blockquote
                 </div>
 
             `;
+
 
             return;
 
@@ -1734,11 +1739,9 @@ Instagram сам перетворює blockquote
 
 
 
-    /*
-    =========================================================
-    RECENT
-    =========================================================
-    */
+    /* =====================================================
+       СВІЖІ POSTS
+    ===================================================== */
 
     function renderRecent(){
 
@@ -1770,6 +1773,7 @@ Instagram сам перетворює blockquote
 
             `;
 
+
             return;
 
         }
@@ -1786,18 +1790,12 @@ Instagram сам перетворює blockquote
 
 
 
-    /*
-    =========================================================
-    INSTAGRAM EMBED.JS
+    /* =====================================================
+       INSTAGRAM EMBED SCRIPT
 
-    ГОЛОВНЕ:
-    ЦЕЙ SCRIPT НЕ ІСНУЄ НА СТОРІНЦІ
-    ДО НАТИСКАННЯ КНОПКИ.
-
-    Тобто Instagram не вантажиться
-    разом з in.html.
-    =========================================================
-    */
+       До натискання кнопки
+       цього script немає.
+    ===================================================== */
 
     function loadInstagramScript(){
 
@@ -1806,7 +1804,7 @@ Instagram сам перетворює blockquote
 
 
                 /*
-                Якщо script уже додавався.
+                  Уже підключено.
                 */
 
                 if(
@@ -1825,7 +1823,9 @@ Instagram сам перетворює blockquote
 
                     }
 
+
                     resolve();
+
 
                     return;
 
@@ -1853,6 +1853,7 @@ Instagram сам перетворює blockquote
                 script.onload =
                     () => {
 
+
                         if(
                             window.instgrm
                             &&
@@ -1865,15 +1866,15 @@ Instagram сам перетворює blockquote
 
                         }
 
+
                         resolve();
 
                     };
 
 
                 /*
-                Навіть якщо Instagram
-                не відповів, сам віджет
-                усе одно показуємо.
+                  Якщо Instagram недоступний,
+                  сам віджет все одно показуємо.
                 */
 
                 script.onerror =
@@ -1892,11 +1893,9 @@ Instagram сам перетворює blockquote
 
 
 
-    /*
-    =========================================================
-    ПОКАЗ ВІДЖЕТА
-    =========================================================
-    */
+    /* =====================================================
+       SHOW
+    ===================================================== */
 
     function showWidget(){
 
@@ -1917,15 +1916,14 @@ Instagram сам перетворює blockquote
 
 
 
-    /*
-    =========================================================
-    КНОПКА "ПОКАЗАТИ INSTAGRAM"
-    =========================================================
-    */
+    /* =====================================================
+       LOAD BUTTON
+    ===================================================== */
 
     loadBtn.addEventListener(
         "click",
         async event => {
+
 
             event.preventDefault();
 
@@ -1942,7 +1940,7 @@ Instagram сам перетворює blockquote
 
 
             /*
-            Прибираємо обкладинку.
+              Прибираємо обкладинку.
             */
 
             loadBtn.style.display =
@@ -1950,7 +1948,7 @@ Instagram сам перетворює blockquote
 
 
             /*
-            Показуємо loader.
+              Loader.
             */
 
             loader.style.display =
@@ -1958,8 +1956,8 @@ Instagram сам перетворює blockquote
 
 
             /*
-            Спочатку створюємо
-            локальний HTML.
+              Спочатку будуємо
+              легкий локальний UI.
             */
 
             renderProfile();
@@ -1970,11 +1968,11 @@ Instagram сам перетворює blockquote
 
 
             /*
-            Показуємо сам інтерфейс
-            майже відразу.
+              Через 250 ms показуємо UI.
 
-            Не змушуємо користувача
-            чекати всі iframe Instagram.
+              Не чекаємо,
+              поки всі Instagram iframe
+              повністю завантажаться.
             */
 
             setTimeout(
@@ -1984,16 +1982,17 @@ Instagram сам перетворює blockquote
 
 
             /*
-            І лише тепер
-            підключаємо Instagram.
+              Instagram починає
+              завантажуватися тільки тут.
             */
 
             await loadInstagramScript();
 
 
             /*
-            Якщо Instagram script
-            завантажився дуже швидко.
+              На випадок,
+              якщо script завантажився
+              швидше 250 ms.
             */
 
             showWidget();
