@@ -1,95 +1,2010 @@
 <!DOCTYPE html>
 <html lang="uk">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-<title>Fox Harko Instagram</title>
+<title>Instagram • Харко</title>
 
 <style>
 
-*{
-    box-sizing:border-box;
-}
+/* =========================================================
+   БАЗА
+========================================================= */
 
 html,
 body{
     margin:0;
     padding:0;
-    background:#000;
+    background:transparent;
 }
 
-.instagram-test{
+*{
+    box-sizing:border-box;
+}
+
+.instagram-box{
+    width:330px;
+    height:650px;
+
+    margin:0 auto;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    background:#0d0d0d;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   ОБКЛАДИНКА-КНОПКА
+========================================================= */
+
+.instagram-cover-btn{
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    padding:0;
+    margin:0;
+
+    border:0;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.08),
+            rgba(0,0,0,.35)
+        ),
+        url("fox_harko_instagram_cover_330x650.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    z-index:10;
+}
+
+
+/* якщо картинки обкладинки немає */
+
+.instagram-cover-btn::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:-1;
+
+    background:
+        radial-gradient(
+            circle at 25% 100%,
+            #feda75 0,
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            #4f5bd5 0,
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #962fbf,
+            #d62976 48%,
+            #fa7e1e
+        );
+}
+
+
+.instagram-cover-label{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width:82%;
+    max-width:255px;
+
+    box-sizing:border-box;
+
+    padding:14px 17px;
+
+    border:
+        2px solid rgba(255,255,255,.96);
+
+    border-radius:14px;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(131,58,180,.94),
+            rgba(225,48,108,.94),
+            rgba(252,175,69,.94)
+        );
+
+    font-size:17px;
+
+    font-weight:900;
+
+    letter-spacing:.2px;
+
+    text-align:center;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.55);
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,.36),
+        0 0 0 2px rgba(255,255,255,.12);
+
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+
+    transition:
+        transform .18s,
+        box-shadow .18s,
+        filter .18s;
+}
+
+
+.instagram-cover-btn:hover
+.instagram-cover-label{
+    filter:brightness(1.08);
+
+    box-shadow:
+        0 9px 27px rgba(0,0,0,.42),
+        0 0 18px rgba(225,48,108,.42);
+}
+
+
+.instagram-cover-btn:active
+.instagram-cover-label{
+    transform:
+        translate(-50%,-50%)
+        scale(.98);
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.instagram-loader{
+    display:none;
+
+    position:absolute;
+
+    inset:0;
+
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #3f1362,
+            #a41d66,
+            #d65632
+        );
+
+    z-index:11;
+}
+
+
+.instagram-spinner{
+    width:31px;
+    height:31px;
+
+    border:
+        3px solid rgba(255,255,255,.28);
+
+    border-top-color:#fff;
+
+    border-radius:50%;
+
+    animation:
+        instagram-spin .75s
+        linear infinite;
+}
+
+
+@keyframes instagram-spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+.instagram-loader span{
+    font-size:13px;
+    font-weight:800;
+}
+
+
+/* =========================================================
+   ВЕСЬ ВІДЖЕТ ПІСЛЯ ЗАВАНТАЖЕННЯ
+========================================================= */
+
+.instagram-widget{
+    position:absolute;
+
+    inset:0;
 
     width:330px;
-    height:630px;
+    height:650px;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    padding:
+        0 8px 80px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0a0a0a 0%,
+            #111 45%,
+            #080808 100%
+        );
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:
+        opacity .35s;
+
+    z-index:5;
+
+    scrollbar-width:thin;
+
+    scrollbar-color:
+        #555 #111;
+}
+
+
+.instagram-widget.show{
+    opacity:1;
+
+    visibility:visible;
+}
+
+
+/* =========================================================
+   PROFILE HEADER
+========================================================= */
+
+.instagram-profile{
+    position:sticky;
+
+    top:0;
+
+    z-index:20;
+
+    margin:
+        0 -8px 10px;
+
+    padding:
+        13px 12px 12px;
+
+    background:
+        rgba(12,12,12,.97);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.16);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+}
+
+
+.instagram-profile-main{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.instagram-avatar-wrap{
+    width:58px;
+    height:58px;
+
+    flex:
+        0 0 58px;
+
+    padding:2px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #feda75,
+            #fa7e1e,
+            #d62976,
+            #962fbf,
+            #4f5bd5
+        );
+}
+
+
+.instagram-avatar-inner{
+    width:100%;
+    height:100%;
+
+    padding:2px;
+
+    border-radius:50%;
+
+    background:#111;
+}
+
+
+.instagram-avatar{
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    background:#222;
+}
+
+
+.instagram-profile-info{
+    min-width:0;
+
+    flex:1;
+}
+
+
+.instagram-service{
+    margin-bottom:3px;
+
+    color:#aaa;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.65px;
+}
+
+
+.instagram-username{
+    overflow:hidden;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+}
+
+
+.instagram-profile-open{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    flex:
+        0 0 auto;
+
+    min-height:32px;
+
+    padding:
+        7px 10px;
+
+    border-radius:9px;
+
+    color:#fff;
+
+    background:
+        #0095f6;
+
+    text-decoration:none;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    transition:
+        background .18s,
+        transform .18s;
+}
+
+
+.instagram-profile-open:hover{
+    background:#168fe5;
+}
+
+
+.instagram-profile-open:active{
+    transform:scale(.97);
+}
+
+
+/* =========================================================
+   СТАТИСТИКА
+========================================================= */
+
+.instagram-stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:6px;
+
+    margin-top:12px;
+}
+
+
+.instagram-stat{
+    display:block;
+
+    min-width:0;
+
+    padding:
+        7px 2px;
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    border-radius:9px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    color:#fff;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    transition:
+        background .18s,
+        border-color .18s;
+}
+
+
+.instagram-stat:hover{
+    background:
+        rgba(255,255,255,.09);
+
+    border-color:
+        rgba(255,255,255,.18);
+}
+
+
+.instagram-stat-value{
+    display:block;
+
+    overflow:hidden;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+}
+
+
+.instagram-stat-label{
+    display:block;
+
+    margin-top:2px;
+
+    color:#999;
+
+    font-size:8.5px;
+
+    line-height:1.1;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.instagram-section-title{
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    margin:
+        11px 3px 8px;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:900;
+}
+
+
+.instagram-section-title::before{
+    content:"";
+
+    width:4px;
+    height:18px;
+
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #feda75,
+            #d62976,
+            #4f5bd5
+        );
+}
+
+
+/* =========================================================
+   SPOILER PINNED
+========================================================= */
+
+.instagram-pinned{
+    margin:
+        8px 0 13px;
+
+    overflow:hidden;
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.17);
+}
+
+
+.instagram-pinned summary{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:
+        12px 11px;
+
+    cursor:pointer;
+
+    list-style:none;
+
+    user-select:none;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(131,58,180,.17),
+            rgba(225,48,108,.13),
+            rgba(252,175,69,.10)
+        );
+
+    font-size:12px;
+
+    font-weight:900;
+}
+
+
+.instagram-pinned
+summary::-webkit-details-marker{
+    display:none;
+}
+
+
+.instagram-pinned-title{
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+}
+
+
+.instagram-pin-icon{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    width:25px;
+    height:25px;
+
+    border-radius:8px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    font-size:13px;
+}
+
+
+.instagram-pinned-count{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-width:25px;
+    height:25px;
+
+    padding:
+        0 6px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    color:#fff;
+
+    font-size:10px;
+
+    font-weight:900;
+}
+
+
+.instagram-pinned summary::after{
+    content:"▼";
+
+    color:#aaa;
+
+    font-size:9px;
+
+    transition:
+        transform .18s;
+}
+
+
+.instagram-pinned[open]
+summary::after{
+    transform:
+        rotate(180deg);
+}
+
+
+.instagram-pinned-content{
+    padding:
+        9px;
+}
+
+
+.instagram-no-pinned{
+    padding:
+        17px 12px;
+
+    border-radius:9px;
+
+    color:#aaa;
+
+    background:
+        rgba(255,255,255,.035);
+
+    text-align:center;
+
+    font-size:11px;
+
+    line-height:1.4;
+}
+
+
+/* =========================================================
+   POSTS
+========================================================= */
+
+.instagram-posts{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+}
+
+
+.instagram-post-card{
+    position:relative;
+
+    width:100%;
+
+    overflow:hidden;
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    border-radius:13px;
+
+    background:#fff;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.25);
+}
+
+
+.instagram-post-number{
+    position:absolute;
+
+    top:7px;
+    left:7px;
+
+    z-index:15;
 
     display:flex;
 
     align-items:center;
     justify-content:center;
 
+    min-width:29px;
+    height:29px;
+
+    padding:
+        0 7px;
+
+    border:
+        1px solid rgba(255,255,255,.26);
+
+    border-radius:8px;
+
+    color:#fff;
+
+    background:
+        rgba(0,0,0,.72);
+
+    font-size:10px;
+
+    font-weight:900;
+
+    backdrop-filter:
+        blur(7px);
+
+    -webkit-backdrop-filter:
+        blur(7px);
+}
+
+
+.instagram-post-link{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-height:90px;
+
+    padding:18px;
+
+    color:#333;
+
+    background:#fff;
+
+    text-decoration:none;
+
     text-align:center;
 
-    font-family:
-        Arial,
-        sans-serif;
+    font-size:12px;
+
+    font-weight:800;
+}
+
+
+/*
+Instagram сам перетворює blockquote
+на iframe після підключення embed.js
+*/
+
+.instagram-media{
+    min-width:0 !important;
+
+    width:100% !important;
+
+    max-width:100% !important;
+
+    margin:0 !important;
+
+    border:0 !important;
+}
+
+
+/* =========================================================
+   ПОМИЛКА / НЕМА ПОСТІВ
+========================================================= */
+
+.instagram-empty{
+    padding:
+        25px 15px;
+
+    border:
+        1px dashed rgba(255,255,255,.16);
+
+    border-radius:11px;
+
+    color:#999;
+
+    background:
+        rgba(255,255,255,.025);
+
+    text-align:center;
+
+    font-size:11px;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   НИЖНЯ ЗАКРІПЛЕНА КНОПКА
+========================================================= */
+
+.instagram-fixed-bottom{
+    display:none;
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    z-index:30;
+
+    padding:
+        17px 10px 11px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(8,8,8,1) 68%,
+            rgba(8,8,8,.93) 82%,
+            rgba(8,8,8,0)
+        );
+
+    pointer-events:none;
+}
+
+
+.instagram-fixed-bottom.show{
+    display:block;
+}
+
+
+.instagram-bottom-link{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    width:100%;
+    height:45px;
+
+    border:
+        1px solid rgba(255,255,255,.28);
+
+    border-radius:11px;
 
     color:#fff;
 
     background:
         linear-gradient(
-            135deg,
+            90deg,
             #833ab4,
+            #c13584,
             #e1306c,
             #fd1d1d,
             #f77737
         );
 
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 5px 17px rgba(0,0,0,.35);
+
+    pointer-events:auto;
+
+    transition:
+        filter .18s,
+        transform .18s;
 }
 
-.instagram-test strong{
-    font-size:18px;
+
+.instagram-bottom-link:hover{
+    filter:brightness(1.1);
 }
 
-.instagram-test small{
-    display:block;
-    margin-top:20px;
-    opacity:.85;
+
+.instagram-bottom-link:active{
+    transform:scale(.98);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:330px){
+
+    .instagram-box,
+    .instagram-widget{
+        width:100vw;
+    }
+
 }
 
 </style>
-
 </head>
+
 
 <body>
 
-<div class="instagram-test">
 
-    <div>
+<div class="instagram-box">
 
-        <strong>
-            Instagram @fox_harko
-        </strong>
 
-        <br><br>
+    <!-- =====================================================
+         ОБКЛАДИНКА
+    ====================================================== -->
 
-        ✅ Cloudflare Worker<br>
-        успішно змінив GitHub
+    <button
+        id="foxHarkoInstagramLoadBtn"
+        class="instagram-cover-btn"
+        type="button"
+        aria-controls="foxHarkoInstagramWidget"
+        aria-label="Показати Instagram Харка">
 
-        <small>
-            2026-08-30T20:53:43.235Z
-        </small>
+        <span class="instagram-cover-label">
+            ◎ Показати Instagram
+        </span>
+
+    </button>
+
+
+
+    <!-- =====================================================
+         LOADER
+    ====================================================== -->
+
+    <div
+        id="foxHarkoInstagramLoader"
+        class="instagram-loader">
+
+        <div class="instagram-spinner"></div>
+
+        <span>
+            Завантаження Instagram...
+        </span>
 
     </div>
 
+
+
+    <!-- =====================================================
+         ВІДЖЕТ
+    ====================================================== -->
+
+    <div
+        id="foxHarkoInstagramWidget"
+        class="instagram-widget">
+
+
+        <!-- PROFILE -->
+
+        <header class="instagram-profile">
+
+            <div class="instagram-profile-main">
+
+
+                <div class="instagram-avatar-wrap">
+
+                    <div class="instagram-avatar-inner">
+
+                        <img
+                            id="foxHarkoInstagramAvatar"
+                            class="instagram-avatar"
+                            alt="Харко">
+
+                    </div>
+
+                </div>
+
+
+                <div class="instagram-profile-info">
+
+                    <div class="instagram-service">
+                        Instagram
+                    </div>
+
+                    <div
+                        id="foxHarkoInstagramUsername"
+                        class="instagram-username">
+                    </div>
+
+                </div>
+
+
+                <a
+                    id="foxHarkoInstagramProfileOpen"
+                    class="instagram-profile-open"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    Профіль
+
+                </a>
+
+            </div>
+
+
+
+            <!-- STATS -->
+
+            <div class="instagram-stats">
+
+
+                <a
+                    id="foxHarkoInstagramPostsStat"
+                    class="instagram-stat"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <span
+                        id="foxHarkoInstagramPostsValue"
+                        class="instagram-stat-value">
+                        —
+                    </span>
+
+                    <span class="instagram-stat-label">
+                        публікацій
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    id="foxHarkoInstagramFollowersStat"
+                    class="instagram-stat"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <span
+                        id="foxHarkoInstagramFollowersValue"
+                        class="instagram-stat-value">
+                        —
+                    </span>
+
+                    <span class="instagram-stat-label">
+                        підписників
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    id="foxHarkoInstagramFollowingStat"
+                    class="instagram-stat"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    <span
+                        id="foxHarkoInstagramFollowingValue"
+                        class="instagram-stat-value">
+                        —
+                    </span>
+
+                    <span class="instagram-stat-label">
+                        підписок
+                    </span>
+
+                </a>
+
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             PINNED
+        ================================================== -->
+
+        <details
+            id="foxHarkoInstagramPinned"
+            class="instagram-pinned">
+
+
+            <summary>
+
+                <span class="instagram-pinned-title">
+
+                    <span class="instagram-pin-icon">
+                        📌
+                    </span>
+
+                    <span>
+                        Закріплені малюнки
+                    </span>
+
+                </span>
+
+
+                <span
+                    id="foxHarkoInstagramPinnedCount"
+                    class="instagram-pinned-count">
+                    0
+                </span>
+
+            </summary>
+
+
+            <div
+                id="foxHarkoInstagramPinnedContent"
+                class="instagram-pinned-content">
+            </div>
+
+
+        </details>
+
+
+
+        <!-- =================================================
+             RECENT
+        ================================================== -->
+
+        <div class="instagram-section-title">
+            Свіжі публікації
+        </div>
+
+
+        <div
+            id="foxHarkoInstagramRecent"
+            class="instagram-posts">
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BOTTOM
+    ====================================================== -->
+
+    <div
+        id="foxHarkoInstagramFixedBottom"
+        class="instagram-fixed-bottom">
+
+
+        <a
+            id="foxHarkoInstagramBottomLink"
+            class="instagram-bottom-link"
+            href="https://www.instagram.com/fox_harko/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            ◎ ПЕРЕЙТИ В INSTAGRAM
+
+        </a>
+
+
+    </div>
+
+
 </div>
 
-</body>
 
+
+<script>
+(() => {
+
+
+    /*
+    =========================================================
+    ЦЕЙ ОБ'ЄКТ ПІДСТАВЛЯЄ CLOUDFLARE WORKER
+    =========================================================
+
+    Сам HTML / дизайн нижче міняти не потрібно.
+
+    Worker змінює тільки дані.
+    =========================================================
+    */
+
+
+    const INSTAGRAM_DATA = {
+
+        username:
+            "fox_harko",
+
+        profileUrl:
+            "https://www.instagram.com/fox_harko/",
+
+
+        /*
+        Можна використати окрему локальну
+        картинку профілю.
+
+        Вона завантажиться ТІЛЬКИ після
+        натискання "Показати Instagram".
+        */
+
+        avatarUrl:
+            "fox_harko_instagram_avatar.png",
+
+
+        stats: {
+
+            posts:
+                "—",
+
+            followers:
+                "—",
+
+            following:
+                "—"
+
+        },
+
+
+        /*
+        01–09
+        */
+
+        pinned: [
+
+            /*
+            Приклад:
+
+            {
+                position:"01",
+                type:"p",
+                id:"ABCDEFG",
+                permalink:
+                    "https://www.instagram.com/p/ABCDEFG/"
+            }
+
+            */
+
+        ],
+
+
+        /*
+        1–10
+        */
+
+        recent: [
+
+            /*
+            Worker автоматично вставляє
+            знайдені свіжі публікації.
+
+            {
+                position:1,
+                type:"p",
+                id:"ABCDEFG",
+                permalink:
+                    "https://www.instagram.com/p/ABCDEFG/"
+            }
+
+            */
+
+        ]
+
+    };
+
+
+
+    /*
+    =========================================================
+    СТАН
+    =========================================================
+    */
+
+    let loaded = false;
+
+    let instagramScriptLoaded =
+        false;
+
+
+
+    /*
+    =========================================================
+    ELEMENTS
+    =========================================================
+    */
+
+    const loadBtn =
+        document.getElementById(
+            "foxHarkoInstagramLoadBtn"
+        );
+
+
+    const loader =
+        document.getElementById(
+            "foxHarkoInstagramLoader"
+        );
+
+
+    const widget =
+        document.getElementById(
+            "foxHarkoInstagramWidget"
+        );
+
+
+    const fixedBottom =
+        document.getElementById(
+            "foxHarkoInstagramFixedBottom"
+        );
+
+
+    const avatar =
+        document.getElementById(
+            "foxHarkoInstagramAvatar"
+        );
+
+
+    const username =
+        document.getElementById(
+            "foxHarkoInstagramUsername"
+        );
+
+
+    const profileOpen =
+        document.getElementById(
+            "foxHarkoInstagramProfileOpen"
+        );
+
+
+    const bottomLink =
+        document.getElementById(
+            "foxHarkoInstagramBottomLink"
+        );
+
+
+    const postsValue =
+        document.getElementById(
+            "foxHarkoInstagramPostsValue"
+        );
+
+
+    const followersValue =
+        document.getElementById(
+            "foxHarkoInstagramFollowersValue"
+        );
+
+
+    const followingValue =
+        document.getElementById(
+            "foxHarkoInstagramFollowingValue"
+        );
+
+
+    const postsStat =
+        document.getElementById(
+            "foxHarkoInstagramPostsStat"
+        );
+
+
+    const followersStat =
+        document.getElementById(
+            "foxHarkoInstagramFollowersStat"
+        );
+
+
+    const followingStat =
+        document.getElementById(
+            "foxHarkoInstagramFollowingStat"
+        );
+
+
+    const pinnedCount =
+        document.getElementById(
+            "foxHarkoInstagramPinnedCount"
+        );
+
+
+    const pinnedContent =
+        document.getElementById(
+            "foxHarkoInstagramPinnedContent"
+        );
+
+
+    const recentContent =
+        document.getElementById(
+            "foxHarkoInstagramRecent"
+        );
+
+
+
+    /*
+    =========================================================
+    ESCAPE
+    =========================================================
+    */
+
+    function escapeHTML(value){
+
+        return String(
+            value ?? ""
+        )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+    }
+
+
+
+    /*
+    =========================================================
+    ОДИН POST
+    =========================================================
+    */
+
+    function createPostHTML(post){
+
+        const position =
+            escapeHTML(
+                post.position
+            );
+
+
+        const permalink =
+            escapeHTML(
+                post.permalink
+            );
+
+
+        /*
+        Усередині blockquote є fallback-посилання.
+
+        Якщо Instagram embed.js не спрацює,
+        користувач усе одно зможе відкрити пост.
+        */
+
+        return `
+
+            <div class="instagram-post-card">
+
+                <div class="instagram-post-number">
+                    ${position}
+                </div>
+
+
+                <blockquote
+                    class="instagram-media"
+                    data-instgrm-captioned
+                    data-instgrm-permalink="${permalink}"
+                    data-instgrm-version="14">
+
+                    <a
+                        class="instagram-post-link"
+                        href="${permalink}"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        Відкрити публікацію
+                        в Instagram
+
+                    </a>
+
+                </blockquote>
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /*
+    =========================================================
+    PROFILE
+    =========================================================
+    */
+
+    function renderProfile(){
+
+        const profileUrl =
+            INSTAGRAM_DATA.profileUrl;
+
+
+        username.textContent =
+            "@" +
+            INSTAGRAM_DATA.username;
+
+
+        profileOpen.href =
+            profileUrl;
+
+
+        bottomLink.href =
+            profileUrl;
+
+
+        postsStat.href =
+            profileUrl;
+
+
+        followersStat.href =
+            profileUrl;
+
+
+        followingStat.href =
+            profileUrl;
+
+
+        postsValue.textContent =
+            INSTAGRAM_DATA.stats.posts ||
+            "—";
+
+
+        followersValue.textContent =
+            INSTAGRAM_DATA.stats.followers ||
+            "—";
+
+
+        followingValue.textContent =
+            INSTAGRAM_DATA.stats.following ||
+            "—";
+
+
+        /*
+        Аватар задається тільки тут.
+
+        До натискання кнопки браузер
+        його не завантажує.
+        */
+
+        if(
+            INSTAGRAM_DATA.avatarUrl
+        ){
+
+            avatar.src =
+                INSTAGRAM_DATA.avatarUrl;
+
+        }
+
+
+        /*
+        Якщо локального аватара немає,
+        використовуємо favicon Харка.
+        */
+
+        avatar.onerror = () => {
+
+            avatar.onerror =
+                null;
+
+            avatar.src =
+                "https://fox-harko.pp.ua/favicon.svg";
+
+        };
+
+    }
+
+
+
+    /*
+    =========================================================
+    PINNED
+    =========================================================
+    */
+
+    function renderPinned(){
+
+        const items =
+            Array.isArray(
+                INSTAGRAM_DATA.pinned
+            )
+                ? INSTAGRAM_DATA.pinned
+                : [];
+
+
+        pinnedCount.textContent =
+            items.length;
+
+
+        if(
+            items.length === 0
+        ){
+
+            pinnedContent.innerHTML = `
+
+                <div class="instagram-no-pinned">
+
+                    Немає малюнків,
+                    що закріплені.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        pinnedContent.innerHTML = `
+
+            <div class="instagram-posts">
+
+                ${
+                    items
+                        .map(
+                            createPostHTML
+                        )
+                        .join("")
+                }
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /*
+    =========================================================
+    RECENT
+    =========================================================
+    */
+
+    function renderRecent(){
+
+        const items =
+            Array.isArray(
+                INSTAGRAM_DATA.recent
+            )
+                ? INSTAGRAM_DATA.recent
+                : [];
+
+
+        if(
+            items.length === 0
+        ){
+
+            recentContent.innerHTML = `
+
+                <div class="instagram-empty">
+
+                    Свіжі публікації
+                    зараз не знайдені.
+
+                    <br><br>
+
+                    Перейди в Instagram,
+                    щоб переглянути профіль.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        recentContent.innerHTML =
+            items
+                .map(
+                    createPostHTML
+                )
+                .join("");
+
+    }
+
+
+
+    /*
+    =========================================================
+    INSTAGRAM EMBED.JS
+
+    ГОЛОВНЕ:
+    ЦЕЙ SCRIPT НЕ ІСНУЄ НА СТОРІНЦІ
+    ДО НАТИСКАННЯ КНОПКИ.
+
+    Тобто Instagram не вантажиться
+    разом з in.html.
+    =========================================================
+    */
+
+    function loadInstagramScript(){
+
+        return new Promise(
+            resolve => {
+
+
+                /*
+                Якщо script уже додавався.
+                */
+
+                if(
+                    instagramScriptLoaded
+                ){
+
+                    if(
+                        window.instgrm
+                        &&
+                        window.instgrm.Embeds
+                    ){
+
+                        window.instgrm
+                            .Embeds
+                            .process();
+
+                    }
+
+                    resolve();
+
+                    return;
+
+                }
+
+
+                instagramScriptLoaded =
+                    true;
+
+
+                const script =
+                    document.createElement(
+                        "script"
+                    );
+
+
+                script.async =
+                    true;
+
+
+                script.src =
+                    "https://www.instagram.com/embed.js";
+
+
+                script.onload =
+                    () => {
+
+                        if(
+                            window.instgrm
+                            &&
+                            window.instgrm.Embeds
+                        ){
+
+                            window.instgrm
+                                .Embeds
+                                .process();
+
+                        }
+
+                        resolve();
+
+                    };
+
+
+                /*
+                Навіть якщо Instagram
+                не відповів, сам віджет
+                усе одно показуємо.
+                */
+
+                script.onerror =
+                    resolve;
+
+
+                document.body
+                    .appendChild(
+                        script
+                    );
+
+            }
+        );
+
+    }
+
+
+
+    /*
+    =========================================================
+    ПОКАЗ ВІДЖЕТА
+    =========================================================
+    */
+
+    function showWidget(){
+
+        loader.style.display =
+            "none";
+
+
+        widget.classList.add(
+            "show"
+        );
+
+
+        fixedBottom.classList.add(
+            "show"
+        );
+
+    }
+
+
+
+    /*
+    =========================================================
+    КНОПКА "ПОКАЗАТИ INSTAGRAM"
+    =========================================================
+    */
+
+    loadBtn.addEventListener(
+        "click",
+        async event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            if(loaded){
+                return;
+            }
+
+
+            loaded =
+                true;
+
+
+            /*
+            Прибираємо обкладинку.
+            */
+
+            loadBtn.style.display =
+                "none";
+
+
+            /*
+            Показуємо loader.
+            */
+
+            loader.style.display =
+                "flex";
+
+
+            /*
+            Спочатку створюємо
+            локальний HTML.
+            */
+
+            renderProfile();
+
+            renderPinned();
+
+            renderRecent();
+
+
+            /*
+            Показуємо сам інтерфейс
+            майже відразу.
+
+            Не змушуємо користувача
+            чекати всі iframe Instagram.
+            */
+
+            setTimeout(
+                showWidget,
+                250
+            );
+
+
+            /*
+            І лише тепер
+            підключаємо Instagram.
+            */
+
+            await loadInstagramScript();
+
+
+            /*
+            Якщо Instagram script
+            завантажився дуже швидко.
+            */
+
+            showWidget();
+
+        }
+    );
+
+
+})();
+</script>
+
+
+</body>
 </html>
