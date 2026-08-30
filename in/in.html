@@ -66,12 +66,6 @@ body{
     cursor:pointer;
     overflow:hidden;
 
-    /*
-       1 — дуже легке затемнення
-       2 — основна картинка
-       3 — Instagram gradient fallback
-    */
-
     background-image:
         linear-gradient(
             to bottom,
@@ -112,7 +106,6 @@ body{
 
 /* =========================================================
    КНОПКА "ПОКАЗАТИ INSTAGRAM"
-   ТОЧНО ПО ЦЕНТРУ
 ========================================================= */
 
 .instagram-cover-label{
@@ -158,11 +151,8 @@ body{
         0 7px 22px rgba(0,0,0,.40),
         0 0 0 2px rgba(255,255,255,.10);
 
-    backdrop-filter:
-        blur(4px);
-
-    -webkit-backdrop-filter:
-        blur(4px);
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
 
     transition:
         transform .18s,
@@ -172,8 +162,7 @@ body{
 
 .instagram-cover-btn:hover
 .instagram-cover-label{
-    filter:
-        brightness(1.08);
+    filter:brightness(1.08);
 
     box-shadow:
         0 8px 25px rgba(0,0,0,.45),
@@ -280,9 +269,7 @@ body{
     z-index:5;
 
     scrollbar-width:thin;
-
-    scrollbar-color:
-        #555 #111;
+    scrollbar-color:#555 #111;
 }
 
 .instagram-widget.show{
@@ -317,18 +304,13 @@ body{
     box-shadow:
         0 5px 15px rgba(0,0,0,.18);
 
-    backdrop-filter:
-        blur(14px);
-
-    -webkit-backdrop-filter:
-        blur(14px);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
 }
 
 .instagram-profile-main{
     display:flex;
-
     align-items:center;
-
     gap:9px;
 }
 
@@ -390,7 +372,6 @@ body{
 
 .instagram-profile-info{
     min-width:0;
-
     flex:1;
 }
 
@@ -400,7 +381,6 @@ body{
     color:#aaa;
 
     font-size:9px;
-
     font-weight:800;
 
     text-transform:uppercase;
@@ -414,11 +394,9 @@ body{
     color:#fff;
 
     font-size:17px;
-
     font-weight:900;
 
     white-space:nowrap;
-
     text-overflow:ellipsis;
 }
 
@@ -445,7 +423,6 @@ body{
     text-decoration:none;
 
     font-size:10px;
-
     font-weight:900;
 
     transition:
@@ -496,7 +473,6 @@ body{
     color:#fff;
 
     text-align:center;
-
     text-decoration:none;
 
     transition:
@@ -520,11 +496,9 @@ body{
     color:#fff;
 
     font-size:13px;
-
     font-weight:900;
 
     white-space:nowrap;
-
     text-overflow:ellipsis;
 }
 
@@ -578,7 +552,6 @@ body{
     cursor:pointer;
 
     list-style:none;
-
     user-select:none;
 
     color:#fff;
@@ -592,7 +565,6 @@ body{
         );
 
     font-size:12px;
-
     font-weight:900;
 }
 
@@ -650,13 +622,11 @@ summary::after{
 
 .instagram-pinned-title{
     min-width:0;
-
     flex:1;
 
     overflow:hidden;
 
     white-space:nowrap;
-
     text-overflow:ellipsis;
 }
 
@@ -680,7 +650,6 @@ summary::after{
     color:#fff;
 
     font-size:10px;
-
     font-weight:900;
 }
 
@@ -702,7 +671,6 @@ summary::after{
     text-align:center;
 
     font-size:11px;
-
     line-height:1.4;
 }
 
@@ -724,7 +692,6 @@ summary::after{
     color:#fff;
 
     font-size:13px;
-
     font-weight:900;
 }
 
@@ -806,14 +773,10 @@ summary::after{
     color:#fff;
 
     font-size:10px;
-
     font-weight:900;
 
-    backdrop-filter:
-        blur(7px);
-
-    -webkit-backdrop-filter:
-        blur(7px);
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
 }
 
 .instagram-post-link{
@@ -835,7 +798,6 @@ summary::after{
     text-align:center;
 
     font-size:12px;
-
     font-weight:800;
 }
 
@@ -843,7 +805,6 @@ summary::after{
     min-width:0 !important;
 
     width:100% !important;
-
     max-width:100% !important;
 
     margin:0 !important;
@@ -873,7 +834,6 @@ summary::after{
     text-align:center;
 
     font-size:11px;
-
     line-height:1.5;
 }
 
@@ -940,7 +900,6 @@ summary::after{
     text-decoration:none;
 
     font-size:12px;
-
     font-weight:900;
 
     box-shadow:
@@ -1039,8 +998,6 @@ summary::after{
             <div class="instagram-profile-main">
 
 
-                <!-- AVATAR -->
-
                 <div class="instagram-avatar-wrap">
 
                     <div class="instagram-avatar-inner">
@@ -1054,9 +1011,6 @@ summary::after{
 
                 </div>
 
-
-
-                <!-- NAME -->
 
                 <div class="instagram-profile-info">
 
@@ -1074,9 +1028,6 @@ summary::after{
 
                 </div>
 
-
-
-                <!-- PROFILE LINK -->
 
                 <a
                     id="foxHarkoInstagramProfileOpen"
@@ -1101,8 +1052,6 @@ summary::after{
             <div class="instagram-stats">
 
 
-                <!-- POSTS -->
-
                 <a
                     id="foxHarkoInstagramPostsStat"
                     class="instagram-stat"
@@ -1125,9 +1074,6 @@ summary::after{
                 </a>
 
 
-
-                <!-- FOLLOWERS -->
-
                 <a
                     id="foxHarkoInstagramFollowersStat"
                     class="instagram-stat"
@@ -1149,9 +1095,6 @@ summary::after{
 
                 </a>
 
-
-
-                <!-- FOLLOWING -->
 
                 <a
                     id="foxHarkoInstagramFollowingStat"
@@ -1277,10 +1220,11 @@ summary::after{
 
 
     /* =====================================================
-       ДАНІ
-
-       ЦЕЙ БЛОК ПОТІМ ЗМІНЮЄ WORKER.
+       WORKER МОЖЕ ЗМІНЮВАТИ ТІЛЬКИ ЦЕЙ БЛОК
     ===================================================== */
+
+
+    /* ===== WORKER_DATA_START ===== */
 
     const INSTAGRAM_DATA = {
 
@@ -1290,21 +1234,8 @@ summary::after{
         profileUrl:
             "https://www.instagram.com/fox_harko/",
 
-
-        /*
-          Локальна аватарка.
-
-          Не завантажується,
-          доки користувач не натисне кнопку.
-        */
-
         avatarUrl:
             "./fox_harko_instagram_avatar.png",
-
-
-        /*
-          Worker підставляє реальні значення.
-        */
 
         stats: {
 
@@ -1319,61 +1250,20 @@ summary::after{
 
         },
 
+        pinned: [],
 
-        /*
-          01 → 09
-
-          Закріплені.
-        */
-
-        pinned: [
-
-            /*
-            {
-                position:"01",
-
-                type:"p",
-
-                id:"ABC123",
-
-                permalink:
-                    "https://www.instagram.com/p/ABC123/"
-            }
-            */
-
-        ],
-
-
-        /*
-          1 → 10
-
-          Свіжі.
-        */
-
-        recent: [
-
-            /*
-            {
-                position:1,
-
-                type:"p",
-
-                id:"ABC123",
-
-                permalink:
-                    "https://www.instagram.com/p/ABC123/"
-            }
-            */
-
-        ]
+        recent: []
 
     };
 
+    /* ===== WORKER_DATA_END ===== */
 
 
     /* =====================================================
-       STATE
+       НИЖЧЕ WORKER НІЧОГО НЕ ЗМІНЮЄ
     ===================================================== */
+
+
 
     let loaded =
         false;
@@ -1639,10 +1529,8 @@ summary::after{
 
 
         /*
-          Важливо:
-
-          src avatar задаємо
-          ТІЛЬКИ після кліку.
+          Аватар завантажується
+          тільки після кліку.
         */
 
         if(
@@ -1654,10 +1542,6 @@ summary::after{
 
         }
 
-
-        /*
-          Fallback.
-        */
 
         avatar.onerror =
             () => {
@@ -1692,11 +1576,6 @@ summary::after{
         pinnedCount.textContent =
             items.length;
 
-
-        /*
-          Навіть якщо закріплених нема,
-          spoiler все одно є.
-        */
 
         if(
             items.length === 0
@@ -1794,7 +1673,7 @@ summary::after{
        INSTAGRAM EMBED SCRIPT
 
        До натискання кнопки
-       цього script немає.
+       embed.js не завантажується.
     ===================================================== */
 
     function loadInstagramScript(){
@@ -1802,10 +1681,6 @@ summary::after{
         return new Promise(
             resolve => {
 
-
-                /*
-                  Уже підключено.
-                */
 
                 if(
                     instagramScriptLoaded
@@ -1825,7 +1700,6 @@ summary::after{
 
 
                     resolve();
-
 
                     return;
 
@@ -1873,8 +1747,8 @@ summary::after{
 
 
                 /*
-                  Якщо Instagram недоступний,
-                  сам віджет все одно показуємо.
+                  Якщо Instagram не відповість,
+                  сам віджет все одно відкриється.
                 */
 
                 script.onerror =
@@ -1956,8 +1830,8 @@ summary::after{
 
 
             /*
-              Спочатку будуємо
-              легкий локальний UI.
+              Спочатку створюємо
+              локальний інтерфейс.
             */
 
             renderProfile();
@@ -1968,11 +1842,9 @@ summary::after{
 
 
             /*
-              Через 250 ms показуємо UI.
-
-              Не чекаємо,
-              поки всі Instagram iframe
-              повністю завантажаться.
+              Показуємо UI,
+              не чекаючи повного
+              завантаження Instagram.
             */
 
             setTimeout(
@@ -1982,18 +1854,12 @@ summary::after{
 
 
             /*
-              Instagram починає
-              завантажуватися тільки тут.
+              І лише після кліку
+              підключаємо Instagram.
             */
 
             await loadInstagramScript();
 
-
-            /*
-              На випадок,
-              якщо script завантажився
-              швидше 250 ms.
-            */
 
             showWidget();
 
