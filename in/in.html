@@ -1440,55 +1440,40 @@ summary::after{
 
     function createPostHTML(post){
 
-        const position =
-            escapeHTML(
-                post.position
-            );
+    const permalink =
+        escapeHTML(
+            post.permalink
+        );
 
 
-        const permalink =
-            escapeHTML(
-                post.permalink
-            );
+    return `
 
+        <div class="instagram-post-card">
 
-        return `
+            <blockquote
+                class="instagram-media"
+                data-instgrm-captioned
+                data-instgrm-permalink="${permalink}"
+                data-instgrm-version="14">
 
-            <div class="instagram-post-card">
+                <a
+                    class="instagram-post-link"
+                    href="${permalink}"
+                    target="_blank"
+                    rel="noopener noreferrer">
 
+                    Відкрити публікацію
+                    в Instagram
 
-                <div class="instagram-post-number">
-                    ${position}
-                </div>
+                </a>
 
+            </blockquote>
 
-                <blockquote
-                    class="instagram-media"
-                    data-instgrm-captioned
-                    data-instgrm-permalink="${permalink}"
-                    data-instgrm-version="14">
+        </div>
 
+    `;
 
-                    <a
-                        class="instagram-post-link"
-                        href="${permalink}"
-                        target="_blank"
-                        rel="noopener noreferrer">
-
-                        Відкрити публікацію
-                        в Instagram
-
-                    </a>
-
-
-                </blockquote>
-
-
-            </div>
-
-        `;
-
-    }
+}
 
 
 
